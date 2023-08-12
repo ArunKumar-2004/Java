@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class Main {
+    public static boolean isZero(int n, int[] arr) {
+        int f = 1;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0) {
+                f = 0;
+                break;
+            }
+        }
+        return (f == 0) ? false : true;
+    }
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter N=");
+        int n = s.nextInt();
+        int mat[] = new int[n];
+        System.out.println("Enter Elements=");
+        for (int i = 0; i < n; i++) {
+            mat[i] = s.nextInt();
+        }
+        int r = n;
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            int k = 0;
+            int max = 0;
+            for (int j = 0; j < n; j++) {
+                if (mat[j] > max) {
+                    max = mat[j];
+                    k = j;
+                }
+            }
+            for (int p = k; p < r; p++) {
+                mat[p] = 0;
+            }
+            r = k;
+            for (int m = 0; m < n; m++) {
+                System.out.print(mat[m] + " ");
+            }
+            count++;
+            if (isZero(n, mat)) {
+                break;
+            }
+            System.out.println();
+        }
+        System.out.println("\n" + count);
+    }
+}
